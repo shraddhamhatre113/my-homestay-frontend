@@ -1,0 +1,27 @@
+.featured {
+}
+.container1 {
+  display: flex;
+  background-image: url("../img/Untitled.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 700px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+h1 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
+}
+.textOne {
+}
+.vac {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: #ff5c00;
+}
+.solText{
+    color: rgb(102, 101, 101);
+    margin-top: 10px;
+}
+
