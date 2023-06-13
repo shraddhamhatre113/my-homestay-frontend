@@ -1,0 +1,150 @@
+.register-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .register-form,
+  .email-list-form {
+    width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .register-form {
+    background-color: #ffffff;
+  }
+  
+  .email-list-form {
+    background-image: url('../../images/2021-06-06-11.41.13-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 380px;
+  }
+  
+  .email-list-form h3 {
+    text-align: center;
+  }
+  
+  .register-form h2 {
+    text-align: left;
+  }
+  
+  .register-form h5,
+  .email-list-form p {
+    text-align: center;
+  }
+  
+  .register-form form,
+  .email-list-form form {
+    margin-top: 20px;
+  }
+  
+  .register-form .form-group,
+  .email-list-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .register-form input[type="text"],
+  .register-form input[type="email"],
+  .register-form input[type="password"],
+  .register-form .password-input input,
+  .email-list-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    box-sizing: border-box; /* Add this property to prevent overflowing */
+  }
+  
+  .register-form .error-message,
+  .email-list-form .error-message {
+    color: #ff0000;
+    margin-top: 5px;
+  }
+  
+  .register-form .password-input {
+    position: relative;
+  }
+  
+  .register-form .password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .email-list-form .form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .email-list-form input[type="email"] {
+    padding-right: 70px;
+  }
+  
+  .email-list-form .placeholder-text {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #aaaaaa;
+    font-style: italic;
+  }
+  
+  .email-list-form input[type="email"]:focus + .placeholder-text {
+    display: none;
+  }
+  
+  .register-form button,
+  .email-list-form button {
+    width: 100%;
+    background-color: #FF9900;
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .register-form button:disabled,
+  .email-list-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  /* Media queries for responsive layout */
+  
+  /* For large screens (PC and tablet) */
+  @media screen and (min-width: 768px) {
+    .register-page {
+      flex-direction: row;
+    }
+  
+    .register-form,
+    .email-list-form {
+      width: 400px;
+      margin-right: 20px;
+    }
+  }
+  
+  /* For small screens (handheld devices) */
+  @media screen and (max-width: 767px) {
+    .register-page {
+      flex-direction: column;
+    }
+  
+    .register-form,
+    .email-list-form {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
