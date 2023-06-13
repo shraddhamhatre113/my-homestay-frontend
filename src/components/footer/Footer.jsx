@@ -1,5 +1,5 @@
 
-ort "./Footer.css"
+import "./Footer.css"
  import logo from '../../images/logo-no-background.svg';
 const Footer = () => {
   return (
