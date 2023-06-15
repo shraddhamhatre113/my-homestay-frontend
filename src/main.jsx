@@ -10,7 +10,7 @@ import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js'
 
-ReactDOM.createRoot(document.getElementsByTagName('body')[0]).render
+
 
 
 

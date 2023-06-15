@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+
+import { useState  } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
+
 import './Register.css';
 
 function Register() {
@@ -13,6 +19,9 @@ function Register() {
   const [emailListEmail, setEmailListEmail] = useState('');
   const [emailListLoading, setEmailListLoading] = useState(false);
   const [emailListErrorMessage, setEmailListErrorMessage] = useState('');
+
+  const navigate = useNavigate();
+ 
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -80,12 +89,24 @@ function Register() {
 
     setLoading(true);
     try {
-      // Make API call to the backend here
-      // Simulating delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      await axios.post('http://localhost:8080/users/signup', {
+        firstName,
+        lastName,
+        email,
+        password
+      }, {
+        withCredentials: true
+      });
       console.log('Registration successful!');
+      navigate('/');
     } catch (error) {
-      setErrorMessage('Email already used. Please choose a different email.');
+      if (error.response && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage('An error occurred during registration.');
+      }
+
     } finally {
       setLoading(false);
     }
@@ -108,14 +129,22 @@ function Register() {
 
     setEmailListLoading(true);
     try {
-      // Make API call to the backend for email list subscription here
-      // Simulating delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log('Email list subscription successful!');
+
+      await axios.post('http://localhost:8080/users/subscribe', {
+       
+        email
+     
+      });
+      console.log('Subscription successful!');
     } catch (error) {
-      setEmailListErrorMessage('Email already subscribed. Please use a different email.');
+      if (error.response && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage('An error occurred during subscription.');
+      }
     } finally {
-      setEmailListLoading(false);
+      setLoading(false);
+
     }
   };
 
@@ -184,4 +213,67 @@ function Register() {
   );
 }
 
+
 export default Register;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import  {useState} from 'react'
+// import axios from 'axios'
+// import "./Register.css"
+
+// const Register = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("")
+//   const [username, setUsername] = useState("")
+
+//   const handleSignup = async(e) => {
+//     e.preventDefault()
+  
+
+//   try {
+//     const response = await axios.post("http://localhost:8080/users/signup", { username, email, password });
+//     console.log(response.data)
+//     console.log("You are signed up successfully!")
+//   } catch (error) {
+//     console.error(error)
+//   }
+// };
+
+//   return (
+//     <div className="login-container ">
+//       <h1>Sign up</h1>
+
+//       <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+//       <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+//       <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+     
+     
+    
+
+//       <button type="submit" className="continue-button" onClick={handleSignup}>
+//         Register
+//       </button>
+//       </div>
+//   );
+
+// }
+
+
+// export default Register
+
+
