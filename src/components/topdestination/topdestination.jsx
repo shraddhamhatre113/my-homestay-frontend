@@ -1,11 +1,11 @@
 import DestinationCard from '../destinationcard/destinationcard';
 
-import dest1 from '../../images/destination-1.jpg';
-import dest2 from '../../images/destination-2.jpg';
-import dest3 from '../../images/destination-3.jpg';
-import dest4 from '../../images/destination-4.jpg';
-import dest5 from '../../images/destination-5.jpg';
-import dest6 from '../../images/destination-5.jpg';
+import dest1 from '../../images.hotels/destination-1.jpg';
+import dest2 from '../../images.hotels/destination-2.jpg';
+import dest3 from '../../images.hotels/destination-3.jpg';
+import dest4 from '../../images.hotels/destination-4.jpg';
+import dest5 from '../../images.hotels/destination-5.jpg';
+import dest6 from '../../images.hotels/destination-6.jpg';
 
 const TopDestination = () => {
     return (

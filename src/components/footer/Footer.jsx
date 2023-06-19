@@ -1,6 +1,6 @@
 
 import "./Footer.css"
- import logo from '../../images/logo-no-background.svg';
+ import logo from '../../images.hotels/logo-no-background.svg';
 const Footer = () => {
   return (
     <div className="container-fluid bg-footer  py-5 px-sm-3 px-lg-5" style={{marginTop: 90 + 'px'}}>
