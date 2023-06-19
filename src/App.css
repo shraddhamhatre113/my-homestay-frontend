@@ -22,7 +22,7 @@
   --gray: #9aa2a8;
   --gray-dark: #343a40;
   --primary: var(--orange);
-  --secondary: var(--white);
+  --secondary: var(--light-background);
   --success: #a77f28;
   --info: #17a2b8;
   --warning: #ffc107;
@@ -36,6 +36,7 @@
   --breakpoint-xl: 1200px;
   --font-family: "Poppins", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --light-background: #EFF0F2;
 }
 
 *,
@@ -2190,7 +2191,7 @@ pre code {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
-  border-radius: 0;
+  border-radius: 0.3em;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -2253,6 +2254,7 @@ select.form-control:focus::-ms-value {
   margin-bottom: 0;
   font-size: inherit;
   line-height: 1.5;
+  font-weight: bold;
 }
 
 .col-form-label-lg {
@@ -6258,7 +6260,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -11050,4 +11052,10 @@ h6,
 .bg-footer{
   background-color: #EFF0F2;
 
+}
+.form-group .form-label{
+  font-weight: bold;
+}
+.form-group .form-label{
+  font-weight: bold;
 }

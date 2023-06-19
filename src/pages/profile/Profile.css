@@ -1,0 +1,21 @@
+
+.profile-container > .row{
+    height:100%;
+    display:flex;
+}
+.profile-container > .row > .col{
+    grid-template-rows:1fr 2fr;
+}
+.profile-pic{
+background-color: var(--light-background);
+}
+.profile-form {
+    grid-template-rows: 0.5fr 2.5fr 1fr 0.5fr;
+}
+.form-control{
+    background-color: var(--light-background) !important;
+    border-radius: 0.2em;
+}
+.form-control:focus{
+    background-color: white !important;
+}
