@@ -1,6 +1,8 @@
 .hotel-page {
   display: flex;
   padding: 20px;
+  position: relative;
+  min-height: 100vh;
 }
 
 .sidebar {
@@ -55,19 +57,21 @@
 .hotel-card {
   border: 1px solid orange;
   border-radius: 4px;
-  height: 200px;
+  height: 100%;
   padding: 10px;
-  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hotel-image {
-  /* width: 100%;
-  height: 100%; */
+  flex: 1;
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 10px;
-
 }
+
+  
 
 .types {
  text-align: center;
@@ -120,17 +124,21 @@
 }
 
 .pagination {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .pagination button {
   margin: 0 5px;
   padding: 5px 10px;
   border: none;
-  background-color: #ccc;
+  background-color: rgb(17, 7, 7);
   color: #fff;
   border-radius: 4px;
   cursor: pointer;
 }
+

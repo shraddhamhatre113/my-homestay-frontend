@@ -133,7 +133,7 @@ const HotelPage = () => {
           <div className="hotel-card">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpLz9cjmpidHS6O4vC1JnXchw9qlTr8qqmGQ&usqp=CAU" alt="" className="hotel-image" />
             <div className="hotel-info">
-              <h3>Beachfront Resort</h3>
+              <h3>Luxury Resort</h3>
               <p>Price Range: $250 - $600 per night</p>
               <p>Rating: 4.7/5</p>
             </div>
@@ -209,6 +209,7 @@ const HotelPage = () => {
               <p>Price Range: $78 per night</p>
               <p>Rating: 4.2/5</p>
             </div>
+
             <div className="pagination">
            <button>1</button>
            <button>2</button>
