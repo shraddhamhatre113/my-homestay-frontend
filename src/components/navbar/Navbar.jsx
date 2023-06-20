@@ -3,15 +3,10 @@ import { Link, useLocation } from "react-router-dom"
 import { useEffect } from "react";
 import { useState } from "react"
 import "./Navbar.css"
-
-import logo from '../../images.hotels/logo-no-background.svg';
-
-
 import logo from '../../images/logo-no-background.svg';
 import { logout, useAuthState, useAuthDispatch } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
 import noimage from '../../images/no-profile-picture-icon.png';
-
 const Navbar = () => {
     const userDetails = useAuthState();
     const [active, setActive] = useState(false);
@@ -32,21 +27,11 @@ const Navbar = () => {
         catch (e) {
             console.log(e)
         }
-
-    }, []);
-
-    // const currentUser = {
-    //     id: 1,
-
-        // username: "inspiration",
-        // isMember: true,
-
-    // }
-
-
+    }
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary flex-sm-nowrap flex-wrap shadow-lg ">
+        <nav className="navbar navbar-expand-lg navbar-dark 
+        bg-primary flex-sm-nowrap flex-wrap shadow-lg ">
             <div className="container-fluid">
                 <button className="navbar-toggler flex-grow-sm-1 flex-grow-0 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar5">
                     <span className="navbar-toggler-icon"></span>

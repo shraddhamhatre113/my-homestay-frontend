@@ -1,6 +1,6 @@
 import './hero.css';
 
-import carousal1 from '../../images.hotels/carousel-1.jpg';
+import carousal1 from '../../images/carousel-1.jpg';
 //import carousal2 from '../../images.hotels/carousel-2.jpg';
 
 const Hero = () => {
