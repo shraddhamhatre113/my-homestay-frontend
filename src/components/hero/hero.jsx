@@ -1,6 +1,8 @@
 import './hero.css';
-import carousal1 from '../../images/image.png';
-import carousal2 from '../../images/carousel-2.jpg';
+
+import carousal1 from '../../images.hotels/carousel-1.jpg';
+//import carousal2 from '../../images.hotels/carousel-2.jpg';
+
 const Hero = () => {
     return (
         <div className="container-fluid p-0">

@@ -1,0 +1,144 @@
+.hotel-page {
+  display: flex;
+  padding: 20px;
+  position: relative;
+  min-height: 100vh;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  margin-right: 20px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.content {
+  flex: 1;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  display: flex;
+}
+
+.search-input input {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid orange;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.search-input button {
+  background-color: orange;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.hotel-types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.hotel-card {
+  border: 1px solid orange;
+  border-radius: 4px;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hotel-image {
+  flex: 1;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+  
+
+.types {
+ text-align: center;
+}
+
+
+
+.hotel-info {
+  font-size: 14px;
+}
+
+.hotel-info h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.hotel-info p {
+  margin: 5px 0;
+}
+
+.rating-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-options label {
+  margin-bottom: 5px;
+}
+
+.types1{
+  align-items: center;
+}
+
+.meal-options,
+.amenities-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.meal-options label,
+.amenities-options label {
+  display: flex;
+  align-items: center;
+}
+
+.meal-options input,
+.amenities-options input {
+  margin-right: 5px;
+}
+
+.pagination {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: rgb(17, 7, 7);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+

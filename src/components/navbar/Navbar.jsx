@@ -3,10 +3,15 @@ import { Link, useLocation } from "react-router-dom"
 import { useEffect } from "react";
 import { useState } from "react"
 import "./Navbar.css"
+
+import logo from '../../images.hotels/logo-no-background.svg';
+
+
 import logo from '../../images/logo-no-background.svg';
 import { logout, useAuthState, useAuthDispatch } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
 import noimage from '../../images/no-profile-picture-icon.png';
+
 const Navbar = () => {
     const userDetails = useAuthState();
     const [active, setActive] = useState(false);
@@ -27,7 +32,18 @@ const Navbar = () => {
         catch (e) {
             console.log(e)
         }
-    }
+
+    }, []);
+
+    // const currentUser = {
+    //     id: 1,
+
+        // username: "inspiration",
+        // isMember: true,
+
+    // }
+
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary flex-sm-nowrap flex-wrap shadow-lg ">
@@ -45,7 +61,7 @@ const Navbar = () => {
                             <a className="nav-link" href="#">PAGES</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">HOTELS</a>
+                            <a className="nav-link" href="/hotels">HOTELS</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">BLOGS</a>
