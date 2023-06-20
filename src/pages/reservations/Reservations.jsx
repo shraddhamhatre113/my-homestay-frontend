@@ -1,9 +1,10 @@
-import "./Reservations.css"
+import "./Reservations.css";
+import dest1 from "../../images/destination-1.jpg";
 
 const Reservations = () => {
   return (
-    <div className="reservations">Reservations</div>
-  )
-}
+   <div></div>
+  );
+};
 
-export default Reservations
+export default Reservations;

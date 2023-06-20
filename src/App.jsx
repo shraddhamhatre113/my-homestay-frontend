@@ -1,10 +1,19 @@
+import 'bootstrap/dist/css/bootstrap.css';
+
+import "bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
+import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/home/Home"
+
 import Hotels from "./pages/hotels/hotels";
+
 import Footer from "./components/footer/Footer"
 import Signin from "./pages/signin/Signin";
-import Register from "./pages/register/Register"
+import Register from "./pages/register/Register";
+import Profile from "./pages/profile/Profile.jsx";
+import { AuthProvider } from './contexts';
+import Reservations from "./pages/reservations/Reservations.jsx";
 
 
 function App() {
@@ -39,10 +48,12 @@ function App() {
         element:<Register/>
       },
 
+
       {
         path:"/hotels",
         element:<Hotels/>
       },
+
 
    
  
@@ -52,9 +63,9 @@ function App() {
     },
   ]);
   return (
-    <div>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </div>
+    </AuthProvider>
   );
 }
 

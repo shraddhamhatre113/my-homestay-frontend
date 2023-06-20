@@ -1,15 +1,36 @@
-import "./Signin.css"
+import { useState } from 'react'
+
+import { useNavigate } from 'react-router-dom';
+import "./Signin.css";
+import { loginUser, useAuthState, useAuthDispatch } from '../../contexts';
 
 const Signin = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
+  const handleSignin = async (e) => {
+    e.preventDefault()
+    try {
+      let response = await loginUser(dispatch, { email, password });
+      console.log("You are logged in!")
+      navigate("/")
+    } catch (error) {
+      console.error(error)
+    }
+  };
+
   return (
     <div className="login-container">
       <h1>Sign in</h1>
-      <input type="text" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-     
-    
+      <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-      <button type="submit" className="continue-button">
+
+
+      <button type="submit" className="continue-button" onClick={handleSignin}>
         Continue
       </button>
 
