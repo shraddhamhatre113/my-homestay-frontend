@@ -2,7 +2,11 @@
 .reservation{
     margin-top: 50px;
 }
-
+.reservation-row{
+   
+    border-radius: 0.6em;
+    padding: 1em;
+}
 .reservation-image{
     max-width: 100%;
   height: auto;
@@ -50,5 +54,8 @@
 .reservation-tab a{
     text-decoration: none;
     color: #333;
+    font-weight: 600;
+}
+.text-bold{
     font-weight: 600;
 }

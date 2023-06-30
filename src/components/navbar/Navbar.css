@@ -17,13 +17,19 @@
 }
 .navbar .dropdown-menu li a {
   color: #777;
-  padding: 8px 20px;
   line-height: normal;
 }
 .navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
   color: #333;
 }	
-
+.navbar .dropdown-menu li:hover {
+ background-color: var(--primary);
+}
+.navbar .dropdown-menu .dropdown-item{
+ padding: 0.45rem 1.5rem;
+ font-weight: 600;
+ 
+ }
 .navbar .dropdown-menu .material-icons {
   font-size: 21px;
   line-height: 16px;
@@ -45,3 +51,8 @@
   background-color: white;
   color: var(--primary)
 }  
+
+.user-action{
+  font-weight: 600;
+  text-transform: uppercase;
+}

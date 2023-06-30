@@ -4,16 +4,16 @@ import { useEffect } from "react";
 import { useState } from "react"
 import "./Navbar.css"
 import logo from '../../images/logo-no-background.svg';
-import { logout, useAuthState, useAuthDispatch } from '../../contexts';
+import { logout, useProfileState, useProfileDispatch } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
 import noimage from '../../images/no-profile-picture-icon.png';
 const Navbar = () => {
-    const userDetails = useAuthState();
+    const userDetails = useProfileState();
     const [active, setActive] = useState(false);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate()
     const { pathname } = useLocation();
-    const dispatch = useAuthDispatch();
+    const dispatch = useProfileDispatch();
     const isActive = () => {
         window.scrollY > 0 ? setActive(true) : setActive(false)
     }
@@ -63,13 +63,14 @@ const Navbar = () => {
                                 <img src={userDetails.user.image?`data:image/jpg;base64,${userDetails.user.image.picture_url}`:noimage} className="avatar" alt="Avatar" />
                                {userDetails.user.first_name} {userDetails.user.last_name}<b className="caret"></b>
                             </button>
-                            <ul className="dropdown-menu p-2 dropdown-menu-lg-end">
-                                <li><a href="/profile"><i className="fa fa-user-o"></i> Profile</a></li>
-                                <li><a href="#"><i className="fa fa-calendar-o"></i> Properties</a></li>
-                                <li><a href="/reservations"><i className="fa fa-sliders"></i> Reservations</a></li>
-                                <li><a href="#"><i className="fa fa-sliders"></i> Transactions</a></li>
+                            <ul className="dropdown-menu dropdown-menu-lg-end">
+                                <li className="dropdown-item"><a href="/profile"><i className="fa fa-user-o"></i> Profile</a></li>
+                                <li className="dropdown-item"><a href="#"><i className="fa fa-home"></i> Properties</a></li>
+                                <li className="dropdown-item"><a href="/reservations"><i className="fa fa-calendar"></i> Reservations</a></li>
+                                <li className="dropdown-item"><a href="/booking-requests"><i className="fa fa-calendar"></i> Booking Requests</a></li>
+                                <li className="dropdown-item"><a href="/transactions"><i className="fa fa-money"></i> Transactions</a></li>
                                 <li className="dropdown-divider"></li>
-                                <li><a href="#" onClick={handleSignout}><i className="material-icons">&#xE8AC;</i> Logout</a></li>
+                                <li className="dropdown-item"><a href="#" onClick={handleSignout}><i className="material-icons">&#xE8AC;</i> Logout</a></li>
                             </ul>
                         </li>) : (<li className="nav-item">
                             <button href="#" data-bs-toggle="dropdown" className="btn btn-secondary dropdown-toggle user-action btn-rounded">

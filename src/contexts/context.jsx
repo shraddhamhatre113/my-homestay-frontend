@@ -1,35 +1,35 @@
 import React, { useReducer } from 'react';
-import { initialState, AuthReducer } from './reducer';
+import { initialState, ProfileReducer } from './reducer';
 
-const AuthStateContext = React.createContext();
-const AuthDispatchContext = React.createContext();
+const ProfileStateContext = React.createContext();
+const ProfileDispatchContext = React.createContext();
 
-export function useAuthState() {
-	const context = React.useContext(AuthStateContext);
+export function useProfileState() {
+	const context = React.useContext(ProfileStateContext);
 	if (context === undefined) {
-		throw new Error('useAuthState must be used within a AuthProvider');
+		throw new Error('useProfileState must be used within a ProfileProvider');
 	}
 
 	return context;
 }
 
-export function useAuthDispatch() {
-	const context = React.useContext(AuthDispatchContext);
+export function useProfileDispatch() {
+	const context = React.useContext(ProfileDispatchContext);
 	if (context === undefined) {
-		throw new Error('useAuthDispatch must be used within a AuthProvider');
+		throw new Error('useProfileDispatch must be used within a ProfileProvider');
 	}
 
 	return context;
 }
 
-export const AuthProvider = ({ children }) => {
-	const [user, dispatch] = useReducer(AuthReducer, initialState);
+export const ProfileProvider = ({ children }) => {
+	const [user, dispatch] = useReducer(ProfileReducer, initialState);
 
 	return (
-		<AuthStateContext.Provider value={user}>
-			<AuthDispatchContext.Provider value={dispatch}>
+		<ProfileStateContext.Provider value={user}>
+			<ProfileDispatchContext.Provider value={dispatch}>
 				{children}
-			</AuthDispatchContext.Provider>
-		</AuthStateContext.Provider>
+			</ProfileDispatchContext.Provider>
+		</ProfileStateContext.Provider>
 	);
 };

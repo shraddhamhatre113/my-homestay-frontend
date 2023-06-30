@@ -3,19 +3,15 @@ import React, { useState, useReducer } from 'react';
 let user = localStorage.getItem('currentUser')
     ? JSON.parse(localStorage.getItem('currentUser')).user
     : '';
-let token = localStorage.getItem('currentUser')
-    ? JSON.parse(localStorage.getItem('currentUser')).auth_token
-    : '';
 
 export const initialState = {
     user: '' || user,
-    token: '' || token,
     loading: false,
     errorMessage: null,
     updateObject:'',
 };
 
-export const AuthReducer = (initialState, action) => {
+export const ProfileReducer = (initialState, action) => {
     switch (action.type) {
         case 'REQUEST_LOGIN':
             return {
@@ -26,7 +22,6 @@ export const AuthReducer = (initialState, action) => {
             return {
                 ...initialState,
                 user: action.payload.user,
-                token: action.payload.auth_token,
                 loading: false,
             };
         case 'LOGOUT':
@@ -62,7 +57,6 @@ export const AuthReducer = (initialState, action) => {
             };
 
         case 'UPLOAD_PIC':
-            console.log(action.payload)
             return {
                 ...initialState,
                 loading: false,

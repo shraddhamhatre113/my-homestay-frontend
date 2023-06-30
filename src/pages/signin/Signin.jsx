@@ -2,15 +2,15 @@ import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import "./Signin.css";
-import { loginUser, useAuthState, useAuthDispatch } from '../../contexts';
+import { loginUser, useProfileState, useProfileDispatch } from '../../contexts';
 
 const Signin = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-  const dispatch = useAuthDispatch();
-  const { loading, errorMessage } = useAuthState();
+  const dispatch = useProfileDispatch();
+  const { loading, errorMessage } = useProfileState();
   const handleSignin = async (e) => {
     e.preventDefault()
     try {

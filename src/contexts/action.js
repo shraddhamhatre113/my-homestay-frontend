@@ -42,9 +42,9 @@ export async function updateProfile(dispatch, profilePayload) {
     data: JSON.stringify(profilePayload),
     url: `${ROOT_URL}/profiles/${profilePayload._id}`,
   };
-  dispatch({
-    type: "UPDATE_PROFILE",
-  });
+  // dispatch({
+  //   type: "UPDATE_PROFILE",
+  // });
   let response = await axios(requestOptions);
   if (response.data.user) {
     dispatch({ type: "PROFILE_UPDATE_SUCCESS", payload: response.data });
@@ -57,7 +57,8 @@ export async function updateProfile(dispatch, profilePayload) {
   return;
 }
 
-export async function uploadPic(dispatch, user_id, picturePayload) {
+export async function 
+uploadPic(dispatch, user_id, picturePayload) {
     const formData = new FormData();
     formData.append("profileImage", picturePayload);
   const requestOptions = {

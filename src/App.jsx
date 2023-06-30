@@ -12,9 +12,10 @@ import Footer from "./components/footer/Footer"
 import Signin from "./pages/signin/Signin";
 import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile.jsx";
-import { AuthProvider } from './contexts';
-import Reservations from "./pages/reservations/Reservations.jsx";
-
+import { ProfileProvider } from './contexts';
+import Transactions from './pages/transactions/Transactions';
+import Reservation from './pages/reservation/Reservation';
+import BookingRequest from './pages/booking_request/BookingRequest';
 
 function App() {
 
@@ -50,12 +51,26 @@ function App() {
 
 
       {
-        path:"/hotels",
-        element:<Hotels/>
+
+        path:"/profile",
+        element:<Profile/>
+      },
+      {
+        path:"/reservations",
+        element:<Reservation/>
+      },
+      {
+        path:"/transactions",
+        element:<Transactions/>
+      },
+      {
+        path:"/booking-requests",
+        element:<BookingRequest/>
       },
 
 
    
+
  
   
 
@@ -63,9 +78,9 @@ function App() {
     },
   ]);
   return (
-    <AuthProvider>
+    <ProfileProvider>
       <RouterProvider router={router} />
-    </AuthProvider>
+    </ProfileProvider>
   );
 }
 
