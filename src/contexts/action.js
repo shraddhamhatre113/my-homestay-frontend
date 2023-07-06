@@ -77,3 +77,40 @@ uploadPic(dispatch, user_id, picturePayload) {
     console.log(e);
   }
 }
+
+export async function propertyView(dispatch,property_id){
+   const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    url: `${ROOT_URL}/properties/${property_id}`,
+  };
+
+  let response = await axios(requestOptions);
+  console.log(response)
+  if (response.data) {
+    dispatch({ type: "PROPERTY_VIEW", payload: response.data });
+    localStorage.setItem("property", JSON.stringify(response.data));
+    return response.data;
+  }
+  
+  return;
+
+}
+export async function addReview(dispatch,property_id){
+  const requestOptions = {
+   method: "GET",
+   headers: { "Content-Type": "application/json" },
+   url: `${ROOT_URL}/properties/${property_id}`,
+ };
+
+ let response = await axios(requestOptions);
+ console.log(response)
+ if (response.data) {
+   dispatch({ type: "ADD_REVIEW", payload: response.data });
+   localStorage.setItem("property", JSON.stringify(response.data));
+   return response.data;
+ }
+ 
+ return;
+
+}

@@ -54,6 +54,9 @@ const Navbar = () => {
                         <li className="nav-item">
                             <a className="nav-link" href="#">SERVICES</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/property">Property</a>
+                        </li>
                     </ul>
                 </div>
                 <div className="navbar-collapse collapse order-3 dual-collapse2 flex-grow-1">

@@ -3,12 +3,18 @@ import React, { useState, useReducer } from 'react';
 let user = localStorage.getItem('currentUser')
     ? JSON.parse(localStorage.getItem('currentUser')).user
     : '';
+let token = localStorage.getItem('currentUser')
+    ? JSON.parse(localStorage.getItem('currentUser')).auth_token
+    : '';
+    let property= localStorage.getItem('property')
+    ?JSON.parse(localStorage.getItem('property')): '';
 
 export const initialState = {
     user: '' || user,
     loading: false,
     errorMessage: null,
     updateObject:'',
+    property:'' || property,
 };
 
 export const ProfileReducer = (initialState, action) => {
@@ -63,7 +69,15 @@ export const ProfileReducer = (initialState, action) => {
                 user:action.payload
                 
             };
-
+            case 'PROPERTY_VIEW':
+                console.log(action.payload)
+                return {
+                    ...initialState,
+                    loading: false,
+                    property:action.payload
+                    
+                };
+    
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }

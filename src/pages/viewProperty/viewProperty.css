@@ -1,0 +1,44 @@
+.react-photo-gallery--gallery img{
+    border-radius: 10px;
+}
+.facility{
+    width:140px;
+    height:130px;
+    margin: 0 10px;
+    background-color:#EFF0F2;
+    border-radius: 5px;
+}
+.facility i{
+    font-size: 30px;
+    margin-bottom: 3px;
+}
+.facility:first-child{
+    margin-left:0 !important;
+}
+.facility:last-child{
+    margin-right:0 !important;
+}
+hr{
+    border-top: 1px solid rgba(0, 0, 0, 0.60);
+}
+
+.amenities li {
+    width:50%;
+    
+}
+.booking-panel .col-6 {
+padding:0
+}
+.booking-panel input[type="text"] {
+    height: calc(2.5em + 0.75rem + 2px)!important;
+}
+.btn-flex {
+    display: flex;
+    align-items: stretch;
+    align-content: stretch;
+  }
+  
+    .btn-flex .btn:first-child {
+      flex-grow: 1;
+      text-align: left;
+    }

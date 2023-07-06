@@ -10,7 +10,6 @@ import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js'
 
 
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
