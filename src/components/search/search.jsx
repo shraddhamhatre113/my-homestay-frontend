@@ -88,7 +88,7 @@ const Search = () => {
                 type="submit"
                 style={{ height: 47 + "px", marginTop: -2 + "px" }}
               >
-                Find
+                Search
               </button>
             </div>
           </div>

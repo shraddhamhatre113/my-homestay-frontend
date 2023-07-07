@@ -10,25 +10,30 @@ const Signin = () => {
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
   const dispatch = useProfileDispatch();
-  const { loading, errorMessage } = useProfileState();
+  const { loading, errorMessage,  authenticated} = useProfileState();
   const handleSignin = async (e) => {
     e.preventDefault()
     try {
-      let response = await loginUser(dispatch, { email, password });
-      console.log("You are logged in!")
-      navigate("/")
+       await loginUser(dispatch, { email, password });
+      
     } catch (error) {
       console.error(error)
     }
   };
+  console.log(authenticated)
+  if(authenticated){
+    navigate('/')
+  }
 
   return (
     <div className="login-container">
       <h1>Sign in</h1>
       <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-
+      <div class="alert alert-danger" role="alert">
+       {errorMessage}
+      </div>
+      
 
       <button type="submit" className="continue-button" onClick={handleSignin}>
         Continue

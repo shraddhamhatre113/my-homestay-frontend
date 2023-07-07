@@ -6,15 +6,26 @@ let user = localStorage.getItem('currentUser')
 let token = localStorage.getItem('currentUser')
     ? JSON.parse(localStorage.getItem('currentUser')).auth_token
     : '';
-    let property= localStorage.getItem('property')
-    ?JSON.parse(localStorage.getItem('property')): '';
 
 export const initialState = {
     user: '' || user,
     loading: false,
     errorMessage: null,
+    authenticated: false,
     updateObject:'',
-    property:'' || property,
+    property:{
+        address:{
+            location:{
+                coordinates:{}
+            }
+        },
+        review_scores:{
+
+        },
+        amenities:[],
+        images:[],
+        
+    },
 };
 
 export const ProfileReducer = (initialState, action) => {
@@ -29,19 +40,22 @@ export const ProfileReducer = (initialState, action) => {
                 ...initialState,
                 user: action.payload.user,
                 loading: false,
+                authenticated: true,
             };
         case 'LOGOUT':
             return {
                 ...initialState,
                 user: '',
                 token: '',
+                authenticated: false,
             };
 
         case 'LOGIN_ERROR':
+            console.log(action.error)
             return {
                 ...initialState,
                 loading: false,
-                errorMessage: action.error,
+                errorMessage: action.error.data,
             };
         case 'UPDATE_PROFILE':
             return {

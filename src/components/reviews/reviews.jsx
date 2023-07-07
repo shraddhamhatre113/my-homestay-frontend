@@ -1,7 +1,7 @@
 import "./reviews.css";
 
 const Reviews = (props) => {
-// console.log(props)
+
 
   return (
     <div id="reviews" class="review-section">
@@ -9,7 +9,7 @@ const Reviews = (props) => {
         <h4 class="m-0">Reviews </h4>
         <span className="ml-3 d-flex align-items-center fs-4">
           {" "}
-          5<i className="fa fa-star ml-1"></i>
+          {props.reviewScore.review_scores_rating}<i className="fa fa-star ml-1"></i>
         </span>
       </div>
 
@@ -86,20 +86,6 @@ const Reviews = (props) => {
           </div>
         </li>
         <li class="col-6 d-flex align-items-center mt-3">
-          <span className="col-6"><strong>Overall Rating</strong></span>
-
-          <div class="progress-bar-container">
-            <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-              <div class="fit-progressbar-background">
-                <span
-                  class="progress-fill"
-                  style={{ width: props.reviewScore.review_scores_rating*10 + "%" }}
-                ></span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="col-6 d-flex align-items-center mt-3">
           <span className="col-6"><strong>Value to money</strong></span>
 
           <div class="progress-bar-container">
@@ -117,7 +103,7 @@ const Reviews = (props) => {
 
       <div class="row g-2">
         <div class="row testimonial-three testimonial-three--col-three mt-5">
-          {props.reviews.map((review)=> (
+          {props.reviews && props.reviews.map((review)=> (
  <div class="col-md-6 testimonial-three-col">
  <div class="testimonial-inner">
    <div class="testimonial-image" itemprop="image">

@@ -6,12 +6,12 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export default function PropertyMap(props){
   const defaultProps = {
     center: {
-      lat: 52.51759,
-      lng: 13.37823
+      lat:  props.address.location.coordinates.latitude|| 52.51759,
+      lng: props.address.location.coordinates.longitude||13.37823
     },
     zoom: 11
   };
-
+  
   return (
     // Important! Always set the container height explicitly
     <div style={{ height: '40vh', width: '100%' }}>
@@ -21,8 +21,8 @@ export default function PropertyMap(props){
         defaultZoom={defaultProps.zoom}
       >
         <AnyReactComponent
-          lat={52.51759}
-          lng={13.37823}
+          lat={props.address.location.coordinates.latitude}
+          lng={props.address.location.coordinates.longitude}
           text="My Marker"
         />
       </GoogleMapReact>

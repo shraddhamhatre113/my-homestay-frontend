@@ -32,17 +32,14 @@ const ViewProperty = (props) => {
 
   useEffect(() => {
     try {
+      console.log('calling')
       propertyView(dispatch, propertyId);
     } catch (error) {
       console.error(error);
     }
     $(".date").datepicker({});
   }, []);
-  useEffect(() => {
-    setGuestCount(
-      `${adultCount+childCount} Guests, ${infantCount} Infants`
-    );
-  });
+ 
 
   const increment = function (e) {
     console.log(e.target.name);
@@ -64,7 +61,7 @@ const ViewProperty = (props) => {
     }
   };
 
-  console.log(details.property);
+  console.log(details);
   return (
     <div className="container-md mt-5">
       {/* section  for images */}
@@ -286,7 +283,7 @@ const ViewProperty = (props) => {
       </div>
       <div className="row">
         <div className="col-12 mt-5">
-          <PropertyMap></PropertyMap>
+          <PropertyMap address={details.property.address}></PropertyMap>
         </div>
       </div>
       <div className="row">

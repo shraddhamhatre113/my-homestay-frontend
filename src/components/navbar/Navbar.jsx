@@ -63,18 +63,18 @@ const Navbar = () => {
                     <ul className="nav navbar-nav ms-auto">
                         {userDetails.user ? (<li className="nav-item dropdown">
                             <button href="#" data-bs-toggle="dropdown" className="btn btn-secondary btn-rounded dropdown-toggle user-action">
-                                <img src={userDetails.user.image?`data:image/jpg;base64,${userDetails.user.image.picture_url}`:noimage} className="avatar" alt="Avatar" />
+                                <img src={userDetails.user.image?userDetails.user.image.picture_url:noimage} className="avatar" alt="Avatar" />
                                {userDetails.user.first_name} {userDetails.user.last_name}<b className="caret"></b>
                             </button>
-                            <ul className="dropdown-menu dropdown-menu-lg-end">
-                                <li className="dropdown-item"><a href="/profile"><i className="fa fa-user-o"></i> Profile</a></li>
-                                <li className="dropdown-item"><a href="#"><i className="fa fa-home"></i> Properties</a></li>
-                                <li className="dropdown-item"><a href="/reservations"><i className="fa fa-calendar"></i> Reservations</a></li>
-                                <li className="dropdown-item"><a href="/booking-requests"><i className="fa fa-calendar"></i> Booking Requests</a></li>
-                                <li className="dropdown-item"><a href="/transactions"><i className="fa fa-money"></i> Transactions</a></li>
-                                <li className="dropdown-divider"></li>
-                                <li className="dropdown-item"><a href="#" onClick={handleSignout}><i className="material-icons">&#xE8AC;</i> Logout</a></li>
-                            </ul>
+                            <div className="dropdown-menu dropdown-menu-lg-end">
+                                <a href="/profile" className="dropdown-item"><i className="fa fa-user-o"></i> Profile</a>
+                                <a href="#" className="dropdown-item"><i className="fa fa-home"></i> Properties</a>
+                                <a href="/reservations" className="dropdown-item"><i className="fa fa-calendar"></i> Reservations</a>
+                                <a href="/booking-requests" className="dropdown-item"><i className="fa fa-calendar"></i> Booking Requests</a>
+                                <a href="/transactions" className="dropdown-item"><i className="fa fa-money"></i> Transactions</a>
+                                <a className="dropdown-divider"></a>
+                                <a href="#" onClick={handleSignout} className="dropdown-item"><i className="material-icons">&#xE8AC;</i> Logout</a>
+                            </div>
                         </li>) : (<li className="nav-item">
                             <button href="#" data-bs-toggle="dropdown" className="btn btn-secondary dropdown-toggle user-action btn-rounded">
                                 <i className="fa fa-user avatar" />

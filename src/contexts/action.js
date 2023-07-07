@@ -11,20 +11,20 @@ export async function loginUser(dispatch, loginPayload) {
 
   try {
     dispatch({ type: "REQUEST_LOGIN" });
-    let response = await axios(requestOptions);
+    let response = await axios(requestOptions)
 
     if (response.data.user) {
       dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
       localStorage.setItem("currentUser", JSON.stringify(response.data));
-      return response.data;
+      
     }
 
-    dispatch({ type: "LOGIN_ERROR", error: response.data.errors[0] });
-    console.log(response.data.errors[0]);
-    return;
+    dispatch({ type: "LOGIN_ERROR", error: response.data });
+    console.log(response)
+    
   } catch (error) {
-    dispatch({ type: "LOGIN_ERROR", error: error });
-    console.log(error);
+    dispatch({ type: "LOGIN_ERROR", error: error.response });
+    console.log(error.response);
   }
 }
 
@@ -57,10 +57,9 @@ export async function updateProfile(dispatch, profilePayload) {
   return;
 }
 
-export async function 
-uploadPic(dispatch, user_id, picturePayload) {
-    const formData = new FormData();
-    formData.append("profileImage", picturePayload);
+export async function uploadPic(dispatch, user_id, picturePayload) {
+  const formData = new FormData();
+  formData.append("profileImage", picturePayload);
   const requestOptions = {
     method: "POST",
     data: formData,
@@ -78,39 +77,35 @@ uploadPic(dispatch, user_id, picturePayload) {
   }
 }
 
-export async function propertyView(dispatch,property_id){
-   const requestOptions = {
+export async function propertyView(dispatch, property_id) {
+  const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     url: `${ROOT_URL}/properties/${property_id}`,
   };
 
   let response = await axios(requestOptions);
-  console.log(response)
+
   if (response.data) {
     dispatch({ type: "PROPERTY_VIEW", payload: response.data });
-    localStorage.setItem("property", JSON.stringify(response.data));
     return response.data;
   }
-  
+
   return;
-
 }
-export async function addReview(dispatch,property_id){
+export async function addReview(dispatch, property_id) {
   const requestOptions = {
-   method: "GET",
-   headers: { "Content-Type": "application/json" },
-   url: `${ROOT_URL}/properties/${property_id}`,
- };
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    url: `${ROOT_URL}/properties/${property_id}`,
+  };
 
- let response = await axios(requestOptions);
- console.log(response)
- if (response.data) {
-   dispatch({ type: "ADD_REVIEW", payload: response.data });
-   localStorage.setItem("property", JSON.stringify(response.data));
-   return response.data;
- }
- 
- return;
+  let response = await axios(requestOptions);
+  console.log(response);
+  if (response.data) {
+    dispatch({ type: "ADD_REVIEW", payload: response.data });
+    return response.data;
+  }
 
+  return;
 }
