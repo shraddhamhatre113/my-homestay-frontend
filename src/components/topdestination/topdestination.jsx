@@ -32,7 +32,7 @@ const TopDestination = () => {
                         <DestinationCard imgUrl={dest5}  city="Arizona"></DestinationCard>
                     </div>
                     <div className="col-lg-4 col-md-6 mb-4">
-                        <DestinationCard imgUrl={dest6}  city="monaco"></DestinationCard>
+                        <DestinationCard imgUrl={dest6}  city="Monaco"></DestinationCard>
                     </div>
                 </div>
             </div>

@@ -40,7 +40,7 @@ const Navbar = () => {
                 <div className="navbar-collapse collapse flex-grow-1 justify-content-center" id="navbar5">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="/">HOME</a>
+                            <a className="nav-link" href="/"><i className="fa fa-home"></i> </a>
                         </li>
                     </ul>
                 </div>

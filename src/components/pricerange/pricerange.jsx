@@ -63,9 +63,9 @@ const PriceRange = (props) => {
       },[props.maxPrice]);
 
   return (
-    <div style={{marginTop: '50px'}} className="d-flex flex-row">
-       <div className="col-1">€{props.minPrice}</div> 
-      <div class="slider-wrapper slider-warning slider-strips slider-ghost col-10">
+    <div  className="d-flex flex-row my-4">
+       <div className="col-0">€{props.minPrice}</div> 
+      <div class="slider-wrapper slider-warning slider-strips slider-ghost col-9">
         <input
           class="input-range"
           type="text"
@@ -77,7 +77,7 @@ const PriceRange = (props) => {
           data-slider-tooltip_split="true"
         />
       </div>
-      <div className="col-1">€{props.maxPrice}</div>
+      <div className="col-0">€{props.maxPrice}</div>
       
     </div>
   );
