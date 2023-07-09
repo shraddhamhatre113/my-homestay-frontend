@@ -17,22 +17,22 @@ const TopDestination = () => {
                 </div>
                 <div className="row">
                     <div className="col-lg-4 col-md-6 mb-4">
-                        <DestinationCard imgUrl={dest1}></DestinationCard>
+                        <DestinationCard imgUrl={dest1}  city="Berlin"></DestinationCard>
                     </div>
                     <div className="col-lg-4 col-md-6 mb-4">
-                        <DestinationCard imgUrl={dest2}></DestinationCard>
+                        <DestinationCard imgUrl={dest2}  city="Barcelona"></DestinationCard>
                     </div>
                     <div className="col-lg-4 col-md-6 mb-4">
-                        <DestinationCard imgUrl={dest3}></DestinationCard>
+                        <DestinationCard imgUrl={dest3}  city="Bangkok"></DestinationCard>
                     </div>
                     <div className="col-lg-4 col-md-6 mb-4">
-                        <DestinationCard imgUrl={dest4}></DestinationCard>
+                        <DestinationCard imgUrl={dest4}  city="Palma"></DestinationCard>
                     </div>
                     <div className="col-lg-4 col-md-6 mb-4">
-                        <DestinationCard imgUrl={dest5}></DestinationCard>
+                        <DestinationCard imgUrl={dest5}  city="Arizona"></DestinationCard>
                     </div>
                     <div className="col-lg-4 col-md-6 mb-4">
-                        <DestinationCard imgUrl={dest6}></DestinationCard>
+                        <DestinationCard imgUrl={dest6}  city="monaco"></DestinationCard>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import App from './App.jsx'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js'
-
+import 'bootstrap-slider/dist/bootstrap-slider.min.js'
 
 
 

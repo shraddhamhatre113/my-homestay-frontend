@@ -39,6 +39,9 @@ const ViewProperty = (props) => {
     }
     $(".date").datepicker({});
   }, []);
+  useEffect(() => {
+    setGuestCount(`${adultCount + childCount} Guests, ${infantCount} Infants`);
+  });
  
 
   const increment = function (e) {
