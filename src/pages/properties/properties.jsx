@@ -30,7 +30,7 @@ const PropertiesList = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:4040/api/properties/search?city=" + city
+        "https://bookme-backend.onrender.com/api/properties/search?city=" + city
       );
       // Process the response or update the state with the filtered properties
       setResult(response.data);

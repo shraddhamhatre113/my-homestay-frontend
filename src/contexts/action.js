@@ -1,4 +1,4 @@
-const ROOT_URL = "http://localhost:4040/api";
+const ROOT_URL = "https://bookme-backend.onrender.com/api";
 import axios from "axios";
 
 export async function loginUser(dispatch, loginPayload) {
