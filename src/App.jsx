@@ -18,6 +18,8 @@ import Transactions from "./pages/transactions/Transactions";
 import Reservation from "./pages/reservation/Reservation";
 import BookingRequest from "./pages/booking_request/BookingRequest";
 import ViewProperty from "./pages/viewProperty/viewProperty";
+import Payment from './pages/payments/payments';
+
 
 
 function App() {
@@ -71,6 +73,10 @@ function App() {
         {
           path: "/properties/:propertyId",
           element: <ViewProperty/>,
+        },
+        {
+          path:"/payments",
+          element:<Payment/>
         },
       ],
     },

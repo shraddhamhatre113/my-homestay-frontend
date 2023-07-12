@@ -24,6 +24,8 @@ const PropertyCard = ({ property }) => {
                 : property.images[0].picture_url
             }
             class="img-fluid rounded thumbnail-image card-img-top"
+            onError={(e)=>{
+              e.target.src=noPropertyImage}}
           />
         </div>
        

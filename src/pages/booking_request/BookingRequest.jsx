@@ -1,9 +1,39 @@
 import "./BookingRequest.css";
 import dest1 from "../../images/destination-1.jpg";
 import { useProfileState } from "../../contexts";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const BookingRequest = () => {
   const userDetails = useProfileState();
+  const [propertyBookings, setPropertyBookings]= useState([])
+  const fetchData = async ()=>{
+    const bookings = await axios.get(
+      "http://localhost:4040/api/booking/"+userDetails.user._id+"/property-bookings"
+    );
+    setPropertyBookings(bookings.data);
+  }
+  useEffect( ()=>{
+   fetchData();
+  },[])
+  const acceptBooking=async (bookingId)=>{
+    await axios.put(
+      "http://localhost:4040/api/booking/"+bookingId,
+      {
+        status:'ACCEPTED'
+      }
+    );
+    fetchData()
+  }
+  const rejectBooking=async (bookingId)=>{
+    await axios.put(
+      "http://localhost:4040/api/booking/"+bookingId,
+      {
+        status:'REJECTED'
+      }
+    );
+    fetchData()
+  }
   return (
     <div className="container reservation-tab ">
     <h1>Booking Request</h1>
@@ -42,45 +72,50 @@ const BookingRequest = () => {
       </ul>
       <div className="tab-content reservation">
         <div id="tab-1" className="tab-pane active" role="tabpanel">
-          {userDetails.user.property_bookings.current_bookings.map((booking,index) => {
+          {propertyBookings.filter(booking=>booking.status=='PENDING').map((booking,index) => {
             return (
               <div className="row reservation-row" key={index}>
                 <div className="col-2 d-flex justify-content-center ">
-                  <img src={dest1} alt="" className="reservation-image" />
+                <a href={"/property/"+booking.property._id} className="text-decoration-none">
+                  <img src={booking.property.images[0].picture_url} alt="" className="reservation-image" />
+                  </a>
                 </div>
                 <div className="col-8 d-flex flex-column justify-content-between">
                   <div>
-                    <h5>
-                      <strong>{booking.property}</strong>
-                    </h5>
+                    
+                  <a href={"/property/"+booking.property._id} className="text-decoration-none">
+                        <strong>{booking.property.name}</strong>
+                      </a>
+                      
+                    
                   </div>
-                  <div className="d-flex justify-content-lg-start reservation-content">
+                  <div className="d-flex justify-content-between w-75 reservation-content">
                     <div>
-                      <span>
+                      <span >
                         <strong>Check In: </strong>
                       </span>
-                      <span>
+                      <span  className="text-muted">
                         {new Date(
                           Date.parse(booking.start_date)
-                        ).toDateString()}
+                        ).toLocaleDateString()}
                       </span>
                     </div>
                     <div>
                       <span>
                         <strong>Check Out: </strong>
                       </span>
-                      <span>
+                      <span className="text-muted">
                         {new Date(
                           Date.parse(booking.end_date)
-                        ).toDateString()}
+                        ).toLocaleDateString()}
                       </span>
                     </div>
                     <div>
                       <span>
                         <strong>Guest: </strong>
                       </span>
-                      <span>{booking.traveler.occupancy.adults} Adults</span>{" "}
-                      <span>
+                      <span  className="text-muted">{booking.traveler.occupancy.adults} Adults</span>{" "}
+                      <span  className="text-muted">
                         {booking.traveler.occupancy.children} Children
                       </span>
                     </div>
@@ -94,16 +129,18 @@ const BookingRequest = () => {
                 </div>
                 <div className="col-2 align-items-center d-flex flex-row justify-content-around">
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary px-5"
                     type="button"
                     style={{ marginRight: 5 + "px" }}
+                    onClick={()=>acceptBooking(booking._id)}
                   >
-                    Approve
+                    Accept
                   </button>
                   <button
-                    className="btn btn-secondary"
+                    className="btn btn-secondary px-5"
                     type="button"
                     style={{ marginRight: 5 + "px" }}
+                    onClick={()=>rejectBooking(booking._id)}
                   >
                     Reject
                   </button>
@@ -113,45 +150,48 @@ const BookingRequest = () => {
           })}
         </div>
         <div id="tab-2" className="tab-pane" role="tabpannel">
-          {userDetails.user.property_bookings.past_booking.map((booking,index) => {
+          {propertyBookings.filter(booking=> booking.status =='COMPLETED'|| booking.status =='ACCEPTED').map((booking,index) => {
             return (
               <div className="row reservation-row"  key={index}>
                 <div className="col-2 d-flex justify-content-center ">
-                  <img src={dest1} alt="" className="reservation-image" />
+                <a href={"/property/"+booking.property._id} className="text-decoration-none">
+                  <img src={booking.property.images[0].picture_url} alt="" className="reservation-image" />
+                  </a>
                 </div>
                 <div className="col-8 d-flex flex-column justify-content-between">
                   <div>
-                    <h5>
-                      <strong>{booking.property}</strong>
-                    </h5>
+                  <a href={"/property/"+booking.property._id} className="text-decoration-none">
+                        <strong>{booking.property.name}</strong>
+                      </a>
+                      
                   </div>
-                  <div className="d-flex justify-content-lg-start reservation-content">
+                  <div className="d-flex justify-content-between w-75 reservation-content">
                     <div>
                       <span>
                         <strong>Check In: </strong>
                       </span>
-                      <span>
+                      <span className="text-muted">
                         {new Date(
                           Date.parse(booking.start_date)
-                        ).toDateString()}
+                        ).toLocaleDateString()}
                       </span>
                     </div>
                     <div>
                       <span>
                         <strong>Check Out: </strong>
                       </span>
-                      <span>
+                      <span className="text-muted">
                         {new Date(
                           Date.parse(booking.end_date)
-                        ).toDateString()}
+                        ).toLocaleDateString()}
                       </span>
                     </div>
                     <div>
                       <span>
                         <strong>Guest: </strong>
                       </span>
-                      <span>{booking.traveler.occupancy.adults} Adults</span>{" "}
-                      <span>
+                      <span className="text-muted">{booking.traveler.occupancy.adults} Adults</span>{" "}
+                      <span className="text-muted">
                         {booking.traveler.occupancy.children} Children
                       </span>
                     </div>
@@ -169,48 +209,51 @@ const BookingRequest = () => {
           })}
         </div>
         <div id="tab-3" className="tab-pane" role="tabpannel">
-          {userDetails.user.property_bookings.rejected_bookings.map(
+          {propertyBookings.filter(booking=> booking.status=='REJECTED').map(
             (booking,index) => {
               return (
                 <div className="row reservation-row"  key={index}>
                   <div className="col-2 d-flex justify-content-center ">
-                    <img src={dest1} alt="" className="reservation-image" />
+                  <a href={"/property/"+booking.property._id} className="text-decoration-none">
+                    <img src={booking.property.images[0].picture_url} alt="" className="reservation-image" />
+                    </a>
                   </div>
                   <div className="col-8 d-flex flex-column justify-content-between">
                     <div>
-                      <h5>
-                        <strong>{booking.property}</strong>
-                      </h5>
+                    <a href={"/property/"+booking.property._id} className="text-decoration-none">
+                        <strong>{booking.property.name}</strong>
+                      </a>
+                      
                     </div>
                     <div className="d-flex justify-content-lg-start reservation-content">
-                      <div>
+                      <div>dest1
                         <span>
                           <strong>Check In: </strong>
                         </span>
-                        <span>
+                        <span className="text-muted">
                           {new Date(
                             Date.parse(booking.start_date)
-                          ).toDateString()}
+                          ).toLocaleDateString()}
                         </span>
                       </div>
                       <div>
                         <span>
                           <strong>Check Out: </strong>
                         </span>
-                        <span>
+                        <span className="text-muted">
                           {new Date(
                             Date.parse(booking.end_date)
-                          ).toDateString()}
+                          ).toLocaleDateString()}
                         </span>
                       </div>
                       <div>
                         <span>
                           <strong>Guest: </strong>
                         </span>
-                        <span>
+                        <span className="text-muted">
                           {booking.traveler.occupancy.adults} Adults
                         </span>{" "}
-                        <span>
+                        <span className="text-muted">
                           {booking.traveler.occupancy.children} Children
                         </span>
                       </div>

@@ -1,12 +1,12 @@
 import PropertyMap from "../../components/googlemap/map";
 import { useProfileDispatch, useProfileState } from "../../contexts";
-import { propertyView } from "../../contexts/action";
+import { addBooking, propertyView } from "../../contexts/action";
 import { useEffect, useState } from "react";
 import ImageGallery from "../../components/imageGallery/imageGallery";
 import Reviews from "../../components/reviews/reviews";
 import "./viewProperty.css";
 import Amenities from "../../components/amenities/amenity";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import $ from "jquery";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
@@ -17,6 +17,7 @@ const ViewProperty = (props) => {
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
   const [guestCount, setGuestCount] = useState("Guests");
+  const navigate = useNavigate();
 
   const details = useProfileState();
 
@@ -64,7 +65,20 @@ const ViewProperty = (props) => {
     }
   };
 
-  console.log(details);
+  const reserve = function(){
+    console.log(dateRange[0])
+    const bookingRequest ={
+      property: details.property,
+      start_date: dateRange[0].startDate.toDateString(),
+      end_date: dateRange[0].endDate.toDateString(),
+      adults: adultCount,
+      childs: childCount,
+      infant: infantCount,
+    }
+    addBooking(dispatch,bookingRequest);
+    navigate("/payments")
+  }
+
   return (
     <div className="container-md mt-5">
       {/* section  for images */}
@@ -134,7 +148,9 @@ const ViewProperty = (props) => {
                 <DateRange
                   editableDateInputs={false}
                   moveRangeOnFirstSelection={false}
-                  onChange={(item) => setDateRange([item.selection])}
+                  onChange={(item) => {
+
+                    setDateRange([item.selection])}}
                   ranges={dateRange}
                   startDatePlaceholder="Check-In"
                   endDatePlaceholder="Check-Out"
@@ -256,7 +272,7 @@ const ViewProperty = (props) => {
                   
                 </div>
               </div>
-              <a href="" className="btn btn-primary d-block w-100 mt-5">
+              <a onClick={reserve} className="btn btn-primary d-block w-100 mt-5">
                 Reserve
               </a>
             </div>

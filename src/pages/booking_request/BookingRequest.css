@@ -5,7 +5,6 @@
 .reservation-row{
    
     border-radius: 0.6em;
-    padding: 1em;
 }
 .reservation-image{
     max-width: 100%;
@@ -13,8 +12,10 @@
   border-radius: 10px;
 }
 .reservation-content{
-    gap: 10px;
+    font-size: 13px;
 }
+
+
 
 .reservation-tab {
     margin-top: 3%;

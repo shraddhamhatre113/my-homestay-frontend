@@ -1,8 +1,20 @@
+import { useEffect, useState } from "react";
 import { useProfileState } from "../../contexts";
 import "./Transactions.css";
+import axios from "axios";
 
 const Transactions = () => {
   const userDetails = useProfileState();
+  const [propertyBookings, setPropertyBookings]= useState([])
+  const fetchData = async ()=>{
+    const bookings = await axios.get(
+      "http://localhost:4040/api/booking/"+userDetails.user._id+"/property-bookings"
+    );
+    setPropertyBookings(bookings.data);
+  }
+  useEffect( ()=>{
+   fetchData();
+  },[])
   const one_day = 1000 * 60 * 60 * 24;
   const totalDays = (booking) => {
     var totalTime =
@@ -11,13 +23,13 @@ const Transactions = () => {
     return totalDay;
   };
   const calcAmount = (booking) => {
-    var sumOfcharges =
-      booking.room_rate.amount +
-      booking.room_rate.additional_charges +
-      booking.room_rate.VAT;
+    var sumOfcharges = totalDays(booking) *
+      booking.room_rate.amount  ;
 
-    const totalAmount = totalDays(booking) * sumOfcharges;
-    return `${booking.room_rate.currency} ${totalAmount}`;
+    const totalAmount = sumOfcharges+
+    booking.room_rate.additional_charges +
+    booking.room_rate.deposit;
+    return `€ ${totalAmount}`;
   };
   const grossAmount = (bookings) => {
     return bookings
@@ -28,16 +40,16 @@ const Transactions = () => {
   };
   const grossCharges = (bookings) => {
     return bookings
-      .map((booking) => booking.room_rate.additional_charges* totalDays(booking))
+      .map((booking) => booking.room_rate.additional_charges)
       .reduce((accumulator, current) => accumulator + current, 0);
   };
-  const grossVat = (bookings) => {
+  const grossDeposit = (bookings) => {
     return bookings
-      .map((booking) => booking.room_rate.VAT* totalDays(booking))
+      .map((booking) => booking.room_rate.deposit)
       .reduce((accumulator, current) => accumulator + current, 0);
   };
   const grossTotal = (bookings) => {
-    return`USD ${grossAmount(bookings) + grossCharges(bookings) + grossVat(bookings)}`;
+    return`€ ${grossAmount(bookings) + grossCharges(bookings) + grossDeposit(bookings)}`;
   };
   return (
     <div className="container transaction-tab ">
@@ -77,7 +89,7 @@ const Transactions = () => {
         </ul>
         <div className="tab-content transaction">
           <div id="tab-1" className="tab-pane active" role="tabpanel">
-            {userDetails.user.property_bookings.past_booking.map((booking) => {
+            {propertyBookings.map((booking) => {
               return (
                 <div className="row transaction-content">
                   <div className="col-10 d-flex flex-column ">
@@ -90,7 +102,7 @@ const Transactions = () => {
                       </span>
                     </div>
                     <div>
-                      <span>{booking.booking_date}</span>
+                      <span>{booking.start_date}</span>
                     </div>
                   </div>
                   <div className="col-2 align-items-center d-flex flex-row justify-content-around pl-4 pr-4">
@@ -101,7 +113,7 @@ const Transactions = () => {
             })}
           </div>
           <div id="tab-2" className="tab-pane" role="tabpannel">
-            {userDetails.user.property_bookings.current_bookings.map(
+            {propertyBookings.filter(booking=> booking.status=='ACCEPTED'|| booking.status =='COMPLETED').map(
               (booking) => {
                 return (
                   <div className="row transaction-content">
@@ -128,26 +140,26 @@ const Transactions = () => {
           </div>
           <div id="tab-3" className="tab-pane" role="tabpannel">
             <table className="table">
-              <caption>List of users</caption>
+              <caption>List of transactions</caption>
               <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Additional Charges</th>
-                  <th scope="col">VAT</th>
+                  <th scope="col">Security Deposite</th>
                  
                   <th scope="col">Total Earning</th>
                 </tr>
               </thead>
               <tbody>
-                {userDetails.user.property_bookings.past_booking.map(
+                {propertyBookings.filter(booking=> booking.status=='ACCEPTED'|| booking.status =='COMPLETED').map(
                   (booking, index) => {
                     return (
                       <tr>
                         <th scope="row">{index + 1}</th>
                         <td>{booking.room_rate.amount*totalDays(booking)}</td>
-                        <td>{booking.room_rate.additional_charges*totalDays(booking)}</td>
-                        <td>{booking.room_rate.VAT*totalDays(booking)}</td>
+                        <td>{booking.room_rate.additional_charges}</td>
+                        <td>{booking.room_rate.deposit}</td>
                       
                         <td>{calcAmount(booking)}</td>
                       </tr>
@@ -160,20 +172,20 @@ const Transactions = () => {
                   <td>Gross Total</td>
                   <td>
                     {grossAmount(
-                      userDetails.user.property_bookings.past_booking
+                      propertyBookings.filter(booking=> booking.status=='ACCEPTED'|| booking.status =='COMPLETED')
                     )}
                   </td>
                   <td>
                     {grossCharges(
-                      userDetails.user.property_bookings.past_booking
+                      propertyBookings.filter(booking=> booking.status=='ACCEPTED'|| booking.status =='COMPLETED')
                     )}
                   </td>
                   <td>
-                    {grossVat(userDetails.user.property_bookings.past_booking)}
+                    {grossDeposit(propertyBookings.filter(booking=> booking.status=='ACCEPTED'|| booking.status =='COMPLETED'))}
                   </td>
                   <td>
                     {grossTotal(
-                      userDetails.user.property_bookings.past_booking
+                      propertyBookings.filter(booking=> booking.status=='ACCEPTED'|| booking.status =='COMPLETED')
                     )}
                   </td>
                 </tr>

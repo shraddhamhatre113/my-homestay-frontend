@@ -128,7 +128,7 @@ function Register() {
 
     setEmailListLoading(true);
     try {
-      await axios.post("https://bookme-backend.onrender.com/users/subscribe", {
+      await axios.post("http://localhost:8080/users/subscribe", {
         email,
       });
       console.log("Subscription successful!");

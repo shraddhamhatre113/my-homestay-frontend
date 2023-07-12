@@ -9,7 +9,6 @@ const PriceRange = (props) => {
     });
 
     useEffect(() => {
-        console.log(price)
         $( '.input-range').each(function(){
             var value = $(this).attr('data-slider-value');
             var separator = value.indexOf(',');
@@ -31,11 +30,12 @@ const PriceRange = (props) => {
                 value: value,
                 tooltip_split: $( this ).attr('data-slider-tooltip_split'),
                 tooltip: $( this ).attr('data-slider-tooltip')
+            }).on('change',function(slideEvent){
+                props.onChange(slideEvent.value.newValue)
             });
         });
       }, []);
       useEffect(() => {
-        console.log(props)
         $( '.input-range').each(function(){
             var value = props.minPrice + "," + props.maxPrice
             var separator = value.indexOf(',');
@@ -75,6 +75,7 @@ const PriceRange = (props) => {
           data-slider-max={price.max}
           data-slider-range="true"
           data-slider-tooltip_split="true"
+          onChange={props.onChange}
         />
       </div>
       <div className="col-0">€{props.maxPrice}</div>
